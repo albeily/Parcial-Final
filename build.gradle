@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+group 'edu.pucmm.survey'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = 'edu.pucmm.survey.Main'
+
+dependencies {
+    //Encryption
+    compile group: 'org.jasypt', name: 'jasypt', version: '1.9.3'
+    //Thymeleaf
+    compile 'org.thymeleaf:thymeleaf:3.0.5.RELEASE'
+    //Javalin
+    compile 'io.javalin:javalin:3.9.0'
+    //Javalin log
+    compile "org.slf4j:slf4j-simple:1.7.28"
+    //Javalin JSON
+    compile "com.fasterxml.jackson.core:jackson-databind:2.10.1"
+    compile group: 'org.json', name: 'json', version: '20200518'
+    //ORM  Hibernate
+    compile 'org.hibernate:hibernate-core:5.4.17.Final'
+    //H2 Database
+    compile 'com.h2database:h2:1.4.200'
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+}
+
+shadowJar {
+    baseName = 'app'
+    classifier = ''
+    archiveVersion = ''
+}
+
+task stage {
+    dependsOn shadowJar
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Check</title>
+    <link rel="icon" href="/images/survey.png">
+
+
+    <!-- links and libraries -->
+    <link rel="stylesheet" href="/design/css/surveyform.css">
+    <script src="/utils/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/design/js/checkOffline.js"></script>
+
+    <link rel="stylesheet" href="/utils/bootstrap/css/bootstrap.min.css">
+    <script src="/utils/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<header th:fragment="header">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-nowrap navbar-default"
+         role="navigation">
+
+        <div class="container">
+
+            <div class="navbar-header font-weight-normal">
+                <a href="/" class=" navbar-brand logo-font">
+                    <img style="width: 40px; height: 40px;" class="mr-3" src="/images/survey.png" alt=""/>
+                    <span>Check</span>
+                </a>
+            </div>
+
+            <a class="btn btn-primary ml-3" href="/account/logout" onclick="signout()">
+                <span class="text-white font-weight-normal">Sign Out</span>
+                <svg th:replace="/local/design/template/icons.html :: signout"></svg>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<footer th:fragment="footer" class="text-light mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-lg-4 col-xl-3">
+                <h5>About this form</h5>
+                <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
+                <p class="mb-3 ">
+                    The Planning Office (OP) of the PUCMM requests the School of Computing and Telecommunications help
+                    you carry out a survey of the population of the northern zone of the country.
+                </p>
+            </div>
+            <div class="col-md-6 col-lg-3 col-xl-3">
+                <h5>Contact</h5>
+                <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
+                <ul class="list-unstyled">
+                    <li>
+                        <svg th:replace="/local/design/template/icons.html :: building"></svg>
+                        Check Company Group Inc.
+                    </li>
+                    <li>
+                        <svg th:replace="/local/design/template/icons.html :: owners"></svg>
+                        Albeily Romano
+                    </li>
+                    <li>
+                        <svg th:replace="/local/design/template/icons.html :: id"></svg>
+                        2016-1066
+                    </li>
+                    <li>
+                        <svg th:replace="/local/design/template/icons.html :: owners"></svg>
+                        orge Michelen
+                    </li>
+                    <li>
+                        <svg th:replace="/local/design/template/icons.html :: id"></svg>
+                        2016-0876
+                    </li>
+                    <li>
+                        <svg th:replace="/local/design/template/icons.html :: phone"></svg>
+                        XXX-XXX-XXXX
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+
+

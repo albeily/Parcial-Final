@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" manifest="/design/html/offline.appcache">
+
+<head th:replace="/local/design/template/template.html :: head">
+
+</head>
+
+
+<body onload="checkWebStorage()">
+<!-- JavaScript External Files -->
+<script src="../design/js/indexedDB.js"></script>
+<script src="../design/js/registerform.js"></script>
+<script src="../design/js/userforms.js"></script>
+<script src="../design/js/sendServer.js"></script>
+<script src="../design/js/webStorage.js"></script>
+<script src="../design/js/checkOffline.js"></script>
+
+<header th:replace="/local/design/template/template.html :: header"></header>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <section class="jumbotron text-center mt-4 mb-4">
+                <div class="container">
+                    <h1 class="jumbotron-heading display-4 ">Check-Form</h1>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active bg-dark text-white" id="home-tab" data-toggle="tab" href="#home" role="tab"
+               aria-controls="home" aria-selected="true">New</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bg-dark text-white" id="profile-tab" data-toggle="tab" href="#profile"
+               onclick="formList()" role="tab" aria-controls="profile" aria-selected="false">Forms</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white ">
+                            <svg th:replace="/local/design/template/icons.html :: newForm"></svg>
+                            New Form Information
+                        </div>
+                        <div class="card-body">
+                            <form id="newform">
+
+                                <div class="row form-group">
+                                    <div class="col">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter name"
+                                               required>
+                                    </div>
+                                    <div class="col">
+                                        <label for="lastname">Lastname</label>
+                                        <input type="text" class="form-control" id="lastname"
+                                               placeholder="Enter lastname" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sector">Sector</label>
+                                    <input type="text" class="form-control" id="sector" rows="6"
+                                           placeholder="Enter sector" required/>
+                                </div>
+
+                                <div class="form-group" style="width: 200px;">
+                                    <label for="education">Education Level</label>
+                                    <select name="educationLevel" class="form-control" id="education">
+                                        <option value="" disabled selected hidden>-- Select --</option>
+                                        <option value="BASIC">Basic</option>
+                                        <option value="PREPARATORY">Preparatory</option>
+                                        <option value="UNIVERSITY">University</option>
+                                        <option value="POSTGRADUATE">Postgraduate</option>
+                                        <option value="DOCTORATE">Doctorate</option>
+                                    </select>
+                                    <small id="educationLevel" class="form-text text-muted">Select current education
+                                        level</small>
+                                </div>
+                                <div class="mx-auto">
+                                    <button data-toggle="modal" data-target="#saveModal" id="save"
+                                            onclick="currentPosition()" type="button"
+                                            class="btn btn-primary text-right">Save
+                                        <svg th:replace="/local/design/template/icons.html :: save"></svg>
+                                    </button>
+                                </div>
+                                <div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="saveModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="saveModalTitle">Are you sure?</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" id="saveModalBody">
+                                                <p>Do you really want to save this form?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                        onclick="registerForm()">Save Form
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card ">
+                        <div>
+                            <button data-toggle="modal" data-target="#sendModal" type="button" id="send"
+                                    class="btn btn-primary btn-block text-center" style=" height: 50px;">Send
+                                <svg th:replace="/local/design/template/icons.html :: send"></svg>
+                                </i></button>
+                        </div>
+                        <div class="modal fade" id="sendModal" tabindex="-1" role="dialog"
+                             aria-labelledby="sendModalTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sendModalTitle">Are you sure?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div id="sendModalBody" class="modal-body">
+                                        <p>Do you really want to send all these forms?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" id="cancel" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <button type="button" class="btn btn-primary" id="sendForm" data-dismiss="modal"
+                                                onclick="send()">Send Form
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body text-center" style="width: 100%;">
+                            <div id="myForms" style="width: 100%;">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md ">
+                    <div class="card ">
+                        <div class="card-header bg-primary text-white ">
+                            <svg th:replace="/local/design/template/icons.html :: form"></svg>
+                            </i> Form Information
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="formname">Name</label>
+                                    <input type="text" class="form-control" id="formname" placeholder="Enter name"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formlastname">Lastname</label>
+                                    <input type="text" class="form-control" id="formlastname"
+                                           placeholder="Enter lastname" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="formsector">Sector</label>
+                                    <input type="text" class="form-control" id="formsector" rows="6"
+                                           placeholder="Enter sector" required/>
+                                </div>
+                                <div class="form-group" style="width: 200px;">
+                                    <label for="education">Education Level</label>
+                                    <select name="educationLevel" class="form-control" id="formeducation">
+                                        <option value="" disabled selected hidden>-- Select --</option>
+                                        <option value="BASIC">Basic</option>
+                                        <option value="PREPARATORY">Preparatory</option>
+                                        <option value="UNIVERSITY">University</option>
+                                        <option value="POSTGRADUATE">Postgraduate</option>
+                                        <option value="DOCTORATE">Doctorate</option>
+                                    </select>
+                                    <small id="formeducationLevel" class="form-text text-muted">Select current education
+                                        level</small>
+                                </div>
+                                <div class="mx-auto">
+                                    <button data-toggle="modal" data-target="#updateModal" type="button"
+                                            class="btn btn-primary text-right btn-update">Update
+                                        <svg th:replace="/local/design/template/icons.html :: update"></svg>
+                                        </i></button>
+                                </div>
+                                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="updateModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="updateModalTitle">Are you sure?</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to update this form?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                                        onclick="updateForm()">Update Form
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<footer th:replace="/local/design/template/template.html :: footer"></footer>
+</body>
+</html>

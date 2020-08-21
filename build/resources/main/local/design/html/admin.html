@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/local/design/template/template.html :: head"></head>
+
+<body onload="initMap()">
+<!-- JavaScript External Files -->
+<script src="../design/js/map.js"></script>
+<script src="../design/js/admin.js"></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&callback=initMap">
+</script>
+
+<header th:replace="/local/design/template/template.html :: header"></header>
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <section class="jumbotron text-center mt-4 mb-4">
+                <div class="container ml-1 mr-1">
+                    <h1 class="jumbotron-heading font-weight-normal">Administration
+                        Control</h1>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active bg-dark text-white" id="home-tab"
+               data-toggle="tab" href="#home" role="tab" aria-controls="home"
+               aria-selected="true">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bg-dark text-white" id="profile-tab"
+               data-toggle="tab" href="#profile" role="tab"
+               aria-controls="profile" aria-selected="false">Forms</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel"
+             aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div>
+                            <button class="btn btn-primary btn-block text-center"
+                                    style="height: 50px;" onclick="newUser()">
+                                <svg th:replace="/local/design/template/icons.html :: newUser"></svg>
+                                New
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="users">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md">
+                    <div class="card ">
+                        <div class="card-header bg-primary text-white ">
+                            <svg th:replace="/local/design/template/icons.html :: owners"></svg>
+                            User Information
+                        </div>
+                        <div class="card-body">
+                            <form action="/admin/account/submit" method="post">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Enter name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname">Lastname</label>
+                                    <input type="text" class="form-control" id="lastname"
+                                           name="lastname" placeholder="Enter lastname" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username"
+                                           name="username" placeholder="Enter username" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password"
+                                           name="password" placeholder="Enter password" required/>
+                                </div>
+                                <div class="form-group" style="width: 200px;">
+                                    <label for="education">User's Role</label>
+                                    <select class="form-control" id="role" name="role">
+                                        <option value="" disabled selected hidden="">--
+                                            Select --
+                                        </option>
+                                        <option value="ADMIN">Admin</option>
+                                        <option value="USER">User</option>
+                                        <option value="ANY">Admin/User</option>
+                                    </select>
+                                    <small id="userRole" class="form-text text-muted">Select
+                                        user-role</small>
+                                </div>
+                                <div class="mx-auto">
+                                    <button type="submit" class="btn btn-primary text-right">
+                                        Submit
+                                        <svg th:replace="/local/design/template/icons.html :: send"></svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel"
+             aria-labelledby="profile-tab">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div>
+                            <button class="btn btn-primary btn-block text-center"
+                                    style="height: 50px;" onclick="refreshForms()">
+                                <svg th:replace="/local/design/template/icons.html :: refresh"></svg>
+                                Refresh
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div id="forms">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md">
+                    <div class="card ">
+                        <div class="card-header bg-primary text-white ">
+                            <svg th:replace="/local/design/template/icons.html :: form"></svg>
+                            Form Information
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="formname">Name</label>
+                                    <input type="text" class="form-control" id="formname"
+                                           name="name" placeholder="Person name" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="formlastname">Lastname</label>
+                                    <input type="text" class="form-control" id="formlastname"
+                                           name="lastname" placeholder="Person lastname" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sector">Sector</label>
+                                    <input type="text" class="form-control" id="sector"
+                                           name="sector" placeholder="Sector" disabled/>
+                                </div>
+                                <div class="form-group" style="width: 200px;">
+                                    <label for="education">Education Level</label>
+                                    <select class="form-control" id="education" name="education" disabled>
+                                        <option value="" disabled selected hidden="">--
+                                            Select --
+                                        </option>
+                                        <option value="BASIC">Basic</option>
+                                        <option value="PREPARATORY">Preparatory</option>
+                                        <option value="UNIVERSITY">University</option>
+                                        <option value="POSTGRADUATE">Postgraduate</option>
+                                        <option value="DOCTORATE">Doctorate</option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="formuser">Registered by</label>
+                                    <input class="form-control" id="formuser" name="user" placeholder="User"
+                                           type="text" disabled/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="mt-3" style="height: 800px;">
+                <div class="col">
+                    <div class="card ">
+                        <form>
+                            <div class="card-header bg-success text-white ">
+                                <svg th:replace="/local/design/template/icons.html :: location"></svg>
+                                Map
+                            </div>
+                            <div class="card-body">
+                                <div id="map" style="height: 700px; width: 100%;"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="/local/design/template/template.html :: footer"></footer>
+</body>
+</html>
