@@ -4,6 +4,8 @@ CACHE MANIFEST
         /survey
         /images/survey.png
         /images/logo.png
+        /images/picture.png
+        /design/audio/snap.wav
         /design/css/surveyform.css
         /design/js/indexedDB.js
         /design/js/registerform.js
@@ -12,6 +14,8 @@ CACHE MANIFEST
         /design/js/webStorage.js
         /design/js/checkOffline.js
 
+        /utils/webcameasy/webcamapp.js
+        /utils/webcameasy/webcameasy.js
         /utils/jquery/jquery-3.5.1.min.js
         /utils/bootstrap/css/bootstrap.min.css
         /utils/bootstrap/js/bootstrap.min.js

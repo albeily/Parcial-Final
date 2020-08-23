@@ -77,7 +77,7 @@ footer a {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: white;
-    max-width: 200px;
+    width: 200px;
     height: 200px;
 
 }
@@ -309,7 +309,6 @@ footer a {
     background-color: black;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url("https://image-cdn.essentiallysports.com/wp-content/uploads/20200610183741/960x0-3-7.jpg");
     background-size: cover;
 }
 
