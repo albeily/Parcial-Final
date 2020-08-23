@@ -1,3 +1,11 @@
 .gradle/
 build
 bin
+
+# Eclipse IDE
+.settings
+.project
+.classpath
+
+# IntelliJ IDE
+.idea
