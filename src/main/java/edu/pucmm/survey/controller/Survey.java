@@ -46,8 +46,8 @@ public class Survey {
         boolean ok = false;
 
         for (Form form : forms) {
+            form.setId(-1);
             ok = submit(form);
-            System.out.println(form.getPerson().getPhoto().getUri());
         }
 
         return ok;
