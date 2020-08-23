@@ -136,7 +136,7 @@ function printForms(forms) {
         btnOpen.type = "button";
         btnOpen.id = forms[i].id;
         btnOpen.onclick = function () {
-            viewForm(forms[i].user.username, forms[i].person.name, forms[i].person.lastname, forms[i].sector, forms[i].education);
+            viewForm(forms[i].user.username, forms[i].person.name, forms[i].person.lastname, forms[i].sector, forms[i].education, forms[i].person.photo.uri);
         };
         open.appendChild(btnOpen);
 
@@ -167,12 +167,13 @@ function viewUser(username, password, name, lastname, role) {
     document.getElementById("role").value = role;
 }
 
-function viewForm(username, name, lastname, sector, education) {
+function viewForm(username, name, lastname, sector, education, photo) {
     document.getElementById("formuser").value = username;
     document.getElementById("formname").value = name;
     document.getElementById("formlastname").value = lastname;
     document.getElementById("sector").value = sector;
     document.getElementById("education").value = education;
+    document.getElementById("formphoto").src = photo;
 }
 
 function newUser() {

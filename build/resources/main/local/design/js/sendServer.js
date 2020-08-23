@@ -15,7 +15,6 @@ function send() {
     if (window.navigator.onLine) {
         allRecords.onsuccess = function () {
             webSocket.send(JSON.stringify(allRecords.result));
-            console.log(JSON.stringify(allRecords.result));
             cleanDatabase();
             formList();
         };
