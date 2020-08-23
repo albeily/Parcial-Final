@@ -66,7 +66,7 @@ function registerForm() {
             username: localStorage.getItem("UID").toString()
         },
         photo: {
-            uri: myPicture.toString(),
+            uri: myPicture.toString()
         }
     });
 
