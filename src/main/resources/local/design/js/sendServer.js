@@ -15,7 +15,7 @@ function send() {
     if (window.navigator.onLine) {
         allRecords.onsuccess = function () {
             webSocket.send(JSON.stringify(allRecords.result));
-            console.log("sent!");
+            console.log(JSON.stringify(allRecords.result));
             cleanDatabase();
             formList();
         };
@@ -27,7 +27,7 @@ function send() {
 }
 
 function connect() {
-    webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/");
+    webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/");
 
     webSocket.onopen = function (e) {
         console.log("Connected");

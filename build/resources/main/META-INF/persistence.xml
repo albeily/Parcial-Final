@@ -9,6 +9,7 @@
         <class>edu.pucmm.survey.entity.Location</class>
         <class>edu.pucmm.survey.entity.Person</class>
         <class>edu.pucmm.survey.entity.User</class>
+        <class>edu.pucmm.survey.entity.Photo</class>
         <properties>
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />-->
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/Survey"/>

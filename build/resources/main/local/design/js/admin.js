@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 function connect() {
-    webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/admin");
+    webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/admin");
 
     webSocket.onopen = function (e) {
         console.log("Connected");
