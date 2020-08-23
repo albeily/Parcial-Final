@@ -66,12 +66,6 @@ function registerForm() {
         },
         user: {
             username: localStorage.getItem("UID").toString()
-<<<<<<< HEAD
-        },
-        photo: {
-            uri: myPicture.toString()
-=======
->>>>>>> 0201198db15b8f29384e78dc55839225bee01775
         }
     });
 
