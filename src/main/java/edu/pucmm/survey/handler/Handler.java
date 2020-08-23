@@ -1,5 +1,7 @@
 package edu.pucmm.survey.handler;
 
+import edu.pucmm.survey.api.Rest;
+import edu.pucmm.survey.api.soap.Soap;
 import edu.pucmm.survey.controller.Survey;
 import edu.pucmm.survey.entity.User;
 import edu.pucmm.survey.utils.BaseHandler;
@@ -62,5 +64,6 @@ public class Handler extends BaseHandler {
         new AdminHandler(app, survey).routes();
         new FormHandler(app, survey).routes();
         new AccountHandler(app, survey).routes();
+        new Rest(app, survey).routes();
     }
 }

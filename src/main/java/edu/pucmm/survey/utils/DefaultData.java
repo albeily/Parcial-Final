@@ -16,16 +16,20 @@ public class DefaultData {
         User user;
 
         person = new Person("admin", "admin");
+        person.setPhoto(new Photo(""));
         user = new User("admin", "admin", person, RoleType.ADMIN);
         survey.submit(user);
 
         person = new Person("Jorge", "Michelen");
+        person.setPhoto(new Photo(""));
         survey.submit(new Form(new Location(18.483402, -69.929611), person, "La zurza", Education.DOCTORATE, user));
 
         person = new Person("Albeily", "Romano");
+        person.setPhoto(new Photo(""));
         survey.submit(new Form(new Location(19.470800, -70.692039), person, "Gurabo", Education.POSTGRADUATE, user));
 
         person = new Person("user", "user");
+        person.setPhoto(new Photo(""));
         user = new User("user", "user", person, RoleType.USER);
         survey.submit(user);
     }

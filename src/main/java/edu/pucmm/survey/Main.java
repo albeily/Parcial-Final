@@ -1,5 +1,6 @@
 package edu.pucmm.survey;
 
+import edu.pucmm.survey.api.soap.Soap;
 import edu.pucmm.survey.controller.Survey;
 import edu.pucmm.survey.handler.Handler;
 import edu.pucmm.survey.service.DBService;
@@ -36,7 +37,11 @@ public class Main {
                 config.addStaticFiles("/local/design/js/");
                 config.registerPlugin(new RouteOverviewPlugin("/admin/routes"));
                 config.enableCorsForAllOrigins();
-            }).start(herokuPort());
+            });
+
+            new Soap(app, survey).routes();
+
+            app.start(herokuPort());
 
             new Handler(app, survey, encryptor).routes();
             new DefaultData(survey).load();
