@@ -2,11 +2,6 @@ let lati = 0;
 let longi = 0;
 let myPicture;
 
-function stopAll() {
-    cameraStopped();
-    webcam.stop();
-    console.log("webcam stopped");
-}
 
 let options = {
     enableHighAccuracy: true,
@@ -48,7 +43,6 @@ function takePhoto() {
     image.onload = function () {
         camApp.style.backgroundImage = "url(" + this.src + ")";
     };
-    stopAll();
 }
 
 
