@@ -1,6 +1,6 @@
 package edu.pucmm.survey.entity;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
@@ -13,6 +13,8 @@ public class Person implements Serializable {
 
     private String name;
     private String lastname;
+    @Embedded
+    private Photo photo;
 
     public Person(String name, String lastname) {
         this.name = name;
@@ -37,5 +39,13 @@ public class Person implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 }

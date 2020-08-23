@@ -3,6 +3,7 @@ package edu.pucmm.survey.controller;
 import edu.pucmm.survey.entity.Form;
 import edu.pucmm.survey.entity.User;
 import edu.pucmm.survey.service.FormService;
+import edu.pucmm.survey.service.PhotoService;
 import edu.pucmm.survey.service.UserService;
 import org.jasypt.util.text.AES256TextEncryptor;
 
@@ -11,12 +12,14 @@ import java.util.List;
 public class Survey {
 
     private final AES256TextEncryptor encryptor;
-    private UserService userService;
-    private FormService formService;
+    private final UserService userService;
+    private final PhotoService photoService;
+    private final FormService formService;
 
     public Survey(AES256TextEncryptor encryptor) {
         this.encryptor = encryptor;
         this.userService = new UserService();
+        this.photoService = new PhotoService();
         this.formService = new FormService();
     }
 
@@ -44,6 +47,7 @@ public class Survey {
 
         for (Form form : forms) {
             ok = submit(form);
+            System.out.println(form.getPerson().getPhoto().getUri());
         }
 
         return ok;

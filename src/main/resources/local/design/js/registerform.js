@@ -1,6 +1,6 @@
 let lati = 0;
 let longi = 0;
-let myPicture;
+let myPicture = "NONE";
 
 
 let options = {
@@ -25,7 +25,6 @@ function error(err) {
 }
 
 function currentPosition() {
-    console.log("mypicture: " + myPicture.toString())
     document.getElementById("webcam-switch").checked = false;
     navigator.geolocation.getCurrentPosition(success, error);
 }
@@ -54,7 +53,10 @@ function registerForm() {
     var request = forms.put({
         person: {
             name: document.querySelector("#name").value,
-            lastname: document.querySelector("#lastname").value
+            lastname: document.querySelector("#lastname").value,
+            photo: {
+                uri: myPicture.toString()
+            }
         },
         sector: document.querySelector("#sector").value,
         education: document.querySelector("#education").value,
@@ -64,9 +66,7 @@ function registerForm() {
         },
         user: {
             username: localStorage.getItem("UID").toString()
-        },
-        photo: {
-            uri: myPicture.toString()
+
         }
     });
 
