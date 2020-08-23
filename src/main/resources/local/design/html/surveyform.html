@@ -15,6 +15,9 @@
 <script src="../design/js/webStorage.js"></script>
 <script src="../design/js/checkOffline.js"></script>
 
+
+
+
 <header th:replace="/local/design/template/template.html :: header"></header>
 
 <div class="container">
@@ -84,11 +87,14 @@
                                     <small id="educationLevel" class="form-text text-muted">Select current education
                                         level</small>
                                 </div>
+                                <div class="row" style="padding: 50px;">
+                                <div th:replace="/local/design/template/template.html :: webcam">
+                                </div>
+                                </div>
                                 <div class="mx-auto">
                                     <button data-toggle="modal" data-target="#saveModal" id="save"
                                             onclick="currentPosition()" type="button"
-                                            class="btn btn-primary text-right">Save
-                                        <svg th:replace="/local/design/template/icons.html :: save"></svg>
+                                            class="btn btn-primary text-right">Save<svg th:replace="/local/design/template/icons.html :: save"></svg>
                                     </button>
                                 </div>
                                 <div class="modal fade" id="saveModal" tabindex="-1" role="dialog"
@@ -207,6 +213,9 @@
                                     <small id="formeducationLevel" class="form-text text-muted">Select current education
                                         level</small>
                                 </div>
+                                <div class="row" style="padding: 50px;">
+                                    <img  class="col" id ="formphoto" src="../images/picture.png" alt="#" style="max-height: fit-content; max-width: fit-content;"/>
+                                </div>
                                 <div class="mx-auto">
                                     <button data-toggle="modal" data-target="#updateModal" type="button"
                                             class="btn btn-primary text-right btn-update">Update
@@ -251,5 +260,6 @@
 
 </div>
 <footer th:replace="/local/design/template/template.html :: footer"></footer>
+<script src="/utils/webcameasy/webcamapp.js"></script>
 </body>
 </html>

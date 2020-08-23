@@ -97,6 +97,7 @@ function openForm(idForm) {
             document.getElementById("formsector").value = results.sector;
             document.getElementById("formeducation").value = results.education;
             document.getElementsByClassName("btn-update").id = results.id;
+            document.getElementById("formphoto").src = results.photo.uri;
         } else {
             console.log("Form not found...");
         }

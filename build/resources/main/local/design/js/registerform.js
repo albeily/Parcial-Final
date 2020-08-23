@@ -1,13 +1,21 @@
-var lati = 0;
-var longi = 0;
-var options = {
+let lati = 0;
+let longi = 0;
+let myPicture;
+
+function stopAll() {
+    cameraStopped();
+    webcam.stop();
+    console.log("webcam stopped");
+}
+
+let options = {
     enableHighAccuracy: true,
     timeout: 0,
     maximumAge: 0
 };
 
 function success(pos) {
-    var crd = pos.coords;
+    let crd = pos.coords;
     lati = crd.latitude;
     longi = crd.longitude;
 
@@ -22,8 +30,27 @@ function error(err) {
 }
 
 function currentPosition() {
+    console.log("mypicture: " + myPicture.toString())
+    document.getElementById("webcam-switch").checked = false;
     navigator.geolocation.getCurrentPosition(success, error);
 }
+
+function takePhoto() {
+
+    beforeTakePhoto();
+    myPicture = webcam.snap();
+    console.log(myPicture.toString());
+    afterTakePhoto();
+    document.getElementById("webcam-switch").checked = false;
+    let camApp = document.getElementById("webcam-app")
+    let image = new Image();
+    image.src = myPicture;
+    image.onload = function () {
+        camApp.style.backgroundImage = "url(" + this.src + ")";
+    };
+    stopAll();
+}
+
 
 function registerForm() {
     var dbActive = dataBase.result;
@@ -43,6 +70,9 @@ function registerForm() {
         },
         user: {
             username: localStorage.getItem("UID").toString()
+        },
+        photo: {
+            uri: myPicture.toString(),
         }
     });
 
@@ -62,5 +92,9 @@ function registerForm() {
         document.querySelector("#lastname").value = "";
         document.querySelector("#sector").value = "";
         document.querySelector("#education").value = "";
+        document.getElementById("webcam-app").style.backgroundImage = "url(" + "/images/picture.png" + ")";
+        document.getElementById("webcam-switch").checked = false;
+        document.getElementById("webcam-switch").hidden = false;
+        window.location.reload();
     };
 }
