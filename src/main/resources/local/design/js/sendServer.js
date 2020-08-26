@@ -26,7 +26,7 @@ function send() {
 }
 
 function connect() {
-    webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/");
+    webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/");
 
     webSocket.onopen = function (e) {
         console.log("Connected");

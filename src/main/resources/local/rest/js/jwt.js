@@ -3,7 +3,7 @@ function login(){
     let password = window.prompt("Please insert the correct password", "Password");
     let token = "";
     const http = new XMLHttpRequest();
-    const url='http://localhost:7000/api/rest/form/verify';
+    const url='http://albeily.me/api/rest/form/verify';
     http.open("GET", url);
     http.setRequestHeader("client",password.toString());
     http.send();

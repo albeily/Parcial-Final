@@ -73,6 +73,12 @@ public class Rest extends BaseHandler {
                     });
                 });
             });
+
+            path("/api/soap", () -> {
+                get(ctx -> {
+                    ctx.render("/local/soap/resources/html/client.html");
+                });
+            });
         });
     }
 
