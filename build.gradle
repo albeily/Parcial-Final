@@ -36,6 +36,8 @@ dependencies {
     compile "org.glassfish.jaxb:jaxb-runtime:2.4.0-b180830.0438"
     compile "com.sun.xml.ws:jaxws-rt:2.3.1"
     compile "com.sun.xml.ws:rt:2.3.1"
+    // JWT
+    compile "io.jsonwebtoken:jjwt:0.9.1"
 }
 
 shadowJar {
