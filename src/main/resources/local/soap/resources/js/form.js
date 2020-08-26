@@ -78,7 +78,7 @@ function formList (){
 
 function registerForm() {
     const Http = new XMLHttpRequest();
-    const url='http://data.albeily.me/form';
+    const url='https://data.albeily.me/form';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     let sendform = {

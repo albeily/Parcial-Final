@@ -3,7 +3,7 @@ from flask import Flask, request, render_template, Response
 import json
 
 app = Flask(__name__, template_folder='resources', static_folder='resources', static_url_path='')
-url = "http://abeily.me/api/soap/form?wsdl"
+url = "https://abeily.me/api/soap/form?wsdl"
 client = Client(url)
 
 ###############

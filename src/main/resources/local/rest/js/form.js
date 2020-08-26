@@ -29,7 +29,7 @@ function formList () {
     document.getElementById("album").innerHTML = "";
     let forms = "";
     const Http = new XMLHttpRequest();
-    const url = 'http://albeily.me/api/rest/form';
+    const url = 'https://albeily.me/api/rest/form';
     Http.open("GET", url);
     Http.setRequestHeader("token", localStorage.getItem("token"));
     Http.send();
@@ -81,7 +81,7 @@ function formList () {
 
 function registerForm() {
     const Http = new XMLHttpRequest();
-    const url='http://albeily.me/api/rest/form';
+    const url='https://albeily.me/api/rest/form';
     Http.open("POST", url);
     Http.setRequestHeader("token",localStorage.getItem("token"));
     Http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
