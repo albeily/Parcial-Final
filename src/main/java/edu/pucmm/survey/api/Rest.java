@@ -28,23 +28,48 @@ public class Rest extends BaseHandler {
     public void routes() {
         app.routes(() -> {
             path("/api/rest", () -> {
-                before(ctx -> {
-                    ctx.header("Authorization", createJWT("user"));
-                    System.out.println(createJWT("user"));
-                });
-
-                after(ctx -> {
-                    ctx.header("Content-Type", "application/json");
+                get(ctx -> {
+                    ctx.render("/local/rest/html/client.html");
                 });
 
                 path("/form", () -> {
+                    before(ctx -> {
+
+                    });
+
+                    after(ctx -> {
+                        ctx.header("Content-Type", "application/json");
+                    });
+
                     get(ctx -> {
-                        ctx.json(survey.getForms());
+                        if(ctx.cookie("token")!=null){
+                            if(ctx.cookie("token").equals(ctx.req.getHeader("token"))) {
+                                ctx.header("Authorization",ctx.cookie("token"));
+                                ctx.json(survey.getForms());
+                            }  }
+
                     });
 
                     post(ctx -> {
-                        Form form = ctx.bodyAsClass(Form.class);
-                        ctx.json(survey.submit(form));
+                        if(ctx.cookie("token")!=null){
+                            if(ctx.cookie("token").equals(ctx.req.getHeader("token"))) {
+                                ctx.header("Authorization",ctx.cookie("token"));
+                                Form form = ctx.bodyAsClass(Form.class);
+                                ctx.json(survey.submit(form));
+                            }  }
+                    });
+
+                    path("/verify", () -> {
+                        get(ctx -> {
+
+                            if (ctx.req.getHeader("client").equalsIgnoreCase("admin")) {
+                                System.out.println(ctx.res.getHeader("client"));
+                                ctx.header("Authorization", createJWT("user"));
+                                ctx.cookie("token",ctx.res.getHeader("Authorization"));
+                            } else {
+                                ctx.header("Authorization", "denied");
+                            }
+                        });
                     });
                 });
             });

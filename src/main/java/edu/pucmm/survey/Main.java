@@ -35,6 +35,7 @@ public class Main {
             app = Javalin.create(config -> {
                 config.addStaticFiles("/local/");
                 config.addStaticFiles("/local/design/js/");
+                config.addStaticFiles("/local/rest/");
                 config.registerPlugin(new RouteOverviewPlugin("/admin/routes"));
                 config.enableCorsForAllOrigins();
             });
