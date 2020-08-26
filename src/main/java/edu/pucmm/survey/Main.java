@@ -61,4 +61,8 @@ public class Main {
 
         return port;
     }
+
+    public static Survey getSurvey() {
+        return survey;
+    }
 }

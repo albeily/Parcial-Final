@@ -28,7 +28,7 @@ public class Soap extends BaseHandler {
         try {
             HttpContext context = build(server, "/api/soap/form");
 
-            FormWebServices wsa = new FormWebServices(survey);
+            FormWebServices wsa = new FormWebServices();
             Endpoint endpoint = Endpoint.create(wsa);
             endpoint.publish(context);
             // http://localhost:7000/api/soap/FormWebServices?wsdl
