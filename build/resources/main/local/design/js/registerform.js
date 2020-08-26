@@ -86,8 +86,6 @@ function registerForm() {
         document.querySelector("#sector").value = "";
         document.querySelector("#education").value = "";
         document.getElementById("webcam-app").style.backgroundImage = "url(" + "/images/picture.png" + ")";
-        document.getElementById("webcam-switch").checked = false;
-        document.getElementById("webcam-switch").hidden = false;
         window.location.reload();
     };
 }
